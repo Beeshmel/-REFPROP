@@ -45,6 +45,22 @@ C:\Program Files (x86) \REFPROP.
 Пример записи формул в REFPROP-Excel
 > =@Enthalpy(nitrogen;0,77; oxygen;0,23;"TP";SI;300;101325)
 
+## Подключение библиотеки REFPROP в Python
+Скачайте последнюю версию библиотеки запустив в Командной строке: pip install CoolProp\
+Добавить библиотеку CoolProp в проект можно в Настройках -Python interpreter.\
+Если на компьютере установлен REFPROP, то CoolProp позволяет подключить и библиотеку данной программы.
+
+```import CoolProp.CoolProp as CP
+
+CP.set_config_string(CP.ALTERNATIVE_REFPROP_LIBRARY_PATH , 'C:\Program Files (x86)\REFPROP\REFPRP64.DLL')
+CP.set_config_bool(CP.REFPROP_USE_GERG , True)
+
+composition_REF = 'REFPROP::METHANE[0.90]&ETHANE[0.07]&PROPANE[0.03]'
+Tin = 300  # K
+Pin = 9.61 * 10 ** 6  # Pa
+H = PropsSI("H" , "T" , Tin , "P" , Pin , composition_REF)
+```
+
 
 
 
